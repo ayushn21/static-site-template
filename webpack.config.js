@@ -21,6 +21,7 @@ module.exports = {
     modules: [
       path.resolve(__dirname, 'src', '_frontend', 'javascript'),
       path.resolve(__dirname, 'src', '_frontend', 'styles'),
+      path.resolve(__dirname, 'src', '_frontend'),
       path.resolve(__dirname, 'src', '_components'),
       path.resolve('./node_modules')
     ]
