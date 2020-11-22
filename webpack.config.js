@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 
 module.exports = {
-  entry: "./frontend/application.js",
+  entry: "./src/_frontend/application.js",
   devtool: "source-map",
   // Set some or all of these to true if you want more verbose logging:
   stats: {
@@ -19,8 +19,9 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx"],
     modules: [
-      path.resolve(__dirname, 'frontend', 'javascript'),
-      path.resolve(__dirname, 'frontend', 'styles'),
+      path.resolve(__dirname, 'src', '_frontend', 'javascript'),
+      path.resolve(__dirname, 'src', '_frontend', 'styles'),
+      path.resolve(__dirname, 'src', '_components'),
       path.resolve('./node_modules')
     ]
   },
