@@ -1,6 +1,9 @@
 module.exports = {
   plugins: [
-    require('postcss-import'),
+    require('postcss-easy-import'),
+    require("postcss-url")([
+      { filter: 'frontend/styles/**/*.svg', url: 'inline' }
+    ]),
     require('postcss-node-sass'),
     require('postcss-flexbugs-fixes'),
     require('postcss-preset-env')({

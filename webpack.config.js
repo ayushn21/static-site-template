@@ -2,8 +2,6 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 
-process.noDeprecation = true
-
 module.exports = {
   entry: "./frontend/application.js",
   devtool: "source-map",
@@ -19,8 +17,12 @@ module.exports = {
     filename: "all.[contenthash].js",
   },
   resolve: {
-    preferRelative: true,
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx"],
+    modules: [
+      path.resolve(__dirname, 'frontend', 'javascript'),
+      path.resolve(__dirname, 'frontend', 'styles'),
+      path.resolve('./node_modules')
+    ]
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -68,8 +70,18 @@ module.exports = {
         test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
         loader: "file-loader",
         options: {
+          name: "[name]-[contenthash].[ext]",
           outputPath: "../fonts",
           publicPath: "../fonts",
+        },
+      },
+      {
+        test: /\.png?$|\.jpg$/,
+        loader: "file-loader",
+        options: {
+          name: "[name]-[contenthash].[ext]",
+          outputPath: "../assets",
+          publicPath: "../assets",
         },
       },
     ],
