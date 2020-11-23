@@ -4,6 +4,7 @@
 
 While the default site structure Bridgetown creates is great, it had a number of shortcomings in my opinion which I've attempted to address in this template.
 
+I've also written [a companion blog post](https://binarysolo.chapter24.blog/a-static-html-website-starter-template-using-bridgetown/) to this repo containing more details behind my thinking and how the configuration works.
 
 ## Directory structure
 
