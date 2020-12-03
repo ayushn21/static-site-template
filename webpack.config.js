@@ -1,6 +1,6 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ManifestPlugin = require("webpack-manifest-plugin");
+const AssetsPlugin = require('assets-webpack-plugin')
 
 module.exports = {
   entry: "./src/_frontend/application.js",
@@ -13,8 +13,8 @@ module.exports = {
     children: false,
   },
   output: {
-    path: path.resolve(__dirname, "output", "_bridgetown", "static", "js"),
-    filename: "all.[contenthash].js",
+    path: path.resolve(__dirname, "output", "_bridgetown", "static"),
+    filename: "js/all.[contenthash].js",
   },
   resolve: {
     extensions: [".js", ".jsx"],
@@ -28,10 +28,13 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "../css/all.[contenthash].css",
+      filename: "css/all.[contenthash].css",
     }),
-    new ManifestPlugin({
-      fileName: path.resolve(__dirname, ".bridgetown-webpack", "manifest.json"),
+    new AssetsPlugin({
+      path: path.resolve(__dirname, ".bridgetown-webpack"),
+      filename: "manifest.json",
+      removeFullPathAutoPrefix: true,
+      prettyPrint: true
     }),
   ],
   module: {
@@ -73,8 +76,8 @@ module.exports = {
         loader: "file-loader",
         options: {
           name: "[name]-[contenthash].[ext]",
-          outputPath: "../fonts",
-          publicPath: "../fonts",
+          outputPath: "fonts",
+          publicPath: "/_bridgetown/static/fonts",
         },
       },
       {
@@ -82,8 +85,8 @@ module.exports = {
         loader: "file-loader",
         options: {
           name: "[name]-[contenthash].[ext]",
-          outputPath: "../assets",
-          publicPath: "../assets",
+          outputPath: "assets",
+          publicPath: "/_bridgetown/static/assets",
         },
       },
     ],
